@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock customcss %}
+
+{% block header %}
+<div class="header">
+  <p class="title">MusicPlay</p>
+</div>
+{% endblock header %}
+{% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.title }}
+  <input type="submit" value="タイトル変更します">
+</form>
+<hr>
+<a href="{% url 'list' %}" class="btn btn-outline-secondary">戻る</a>
+{% endblock %}

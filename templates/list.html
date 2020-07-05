@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock customcss %}
+
+{% block header %}
+<div class="header">
+  <p class="title">MusicPlay</p>
+</div>
+{% endblock header %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="aside_box">
+      <table>
+        <tr>
+          <th>曲名</th>
+          <th>再生</th>
+          <th>編集</th>
+          <th>削除</th>
+        </tr>
+        {% for item in object_list %}
+        <tr>
+          <td>{{ item.title }}</td>
+          <td><audio controls class="audi"><source src="{{ item.m_file.url }}"></audio></td>
+          <td><a href="{% url 'update' item.pk %}">編集</a></td>
+          <td><a href="{% url 'delete' item.pk %}">削除</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  
+  <div class="container">
+    <hr>
+    <div class="context">
+      <p style="font-weight: bold;">曲を追加しましょう！</p>
+      <a href="{% url 'create' %}" class="btn btn-secondary btn-lg">新規作成</span></a>
+    </div>
+  </div>
+</main>
+{% endblock content %}
